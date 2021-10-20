@@ -6,16 +6,19 @@ const Navbar = () => {
             <nav className={s.sidebar__nav}>
                 <ul className={s.sidebar__ul}>
                     <li className={s.sidebar__navLink}>
-                        <a href="#">Profile</a>
+                        <a href="/profile">Profile</a>
                     </li>
                     <li className={s.sidebar__navLink}>
-                        <a href="#">Messages</a>
+                        <a href="/dialogs">Messages</a>
                     </li>
                     <li className={s.sidebar__navLink}>
-                        <a href="#">News</a>
+                        <a href="/news">News</a>
                     </li>
                     <li className={s.sidebar__navLink}>
-                        <a href="#">Music</a>
+                        <a href="/music">Music</a>
+                    </li>
+                    <li className={s.sidebar__navLink}>
+                        <a href="/settings">Settings</a>
                     </li>
                 </ul>
             </nav>
