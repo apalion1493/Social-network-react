@@ -20,6 +20,6 @@
     text-decoration: none;
 }
 
-.sidebar__navLink a:hover {
-    text-decoration: underline;
+.sidebar__navLink a.active {
+    color: gold;
 }
