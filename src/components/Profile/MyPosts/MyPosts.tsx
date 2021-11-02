@@ -2,6 +2,13 @@ import s from './MyPosts.module.css';
 import {Post} from "./Post/Post";
 
 const MyPosts = () => {
+    const postData = [
+        {id: 1, like: 1, message: 'text 1'},
+        {id: 2, like: 3, message: 'text 2'},
+        {id: 3, like: 1, message: 'text 3'},
+        {id: 4, like: 5, message: 'text 4'},
+    ];
+
   return (
       <div>
           <h3 className={s.title}>My Posts</h3>
@@ -10,10 +17,9 @@ const MyPosts = () => {
               <button className={s.button}>Send</button>
           </div>
           <div className={s.postList}>
-              <Post likeCount={1} message={'text 1'}/>
-              <Post likeCount={3} message={'text 2'}/>
-              <Post likeCount={1} message={'text 3'}/>
-              <Post likeCount={5} message={'text 4'}/>
+              {
+                  postData.map(t => <Post id={t.id} likeCount={t.like} message={t.message}/>)
+              }
           </div>
       </div>
   )

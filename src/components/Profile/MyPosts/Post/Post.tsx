@@ -2,7 +2,8 @@ import s from './Post.module.css'
 
 type contentType = {
     message: string,
-    likeCount: number
+    likeCount: number,
+    id: number
 }
 
 export const Post = (props: contentType) => {
