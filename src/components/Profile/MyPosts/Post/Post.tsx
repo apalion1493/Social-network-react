@@ -1,12 +1,13 @@
 import s from './Post.module.css'
+import React from "react";
 
-type contentType = {
+type ContentType = {
     message: string,
     likeCount: number,
     id: number
 }
 
-export const Post = (props: contentType) => {
+export const Post: React.FC<ContentType> = (props: ContentType) => {
     return (
         <div className={s.post}>
             <div className={s.avatar}/>

@@ -1,5 +1,6 @@
 import s from './MyPosts.module.css';
 import {Post} from "./Post/Post";
+import React from "react";
 
 export type PostsType = {
     posts: Array<PostType>
@@ -11,8 +12,7 @@ export type PostType = {
     message: string
 }
 
-const MyPosts = (props: PostsType) => {
-
+const MyPosts: React.FC<PostsType> = (props) => {
   return (
       <div>
           <h3 className={s.title}>My Posts</h3>
