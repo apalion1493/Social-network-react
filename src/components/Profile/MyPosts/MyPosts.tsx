@@ -1,6 +1,6 @@
 import s from './MyPosts.module.css';
 import {Post} from "./Post/Post";
-import React from "react";
+import React, {LegacyRef} from "react";
 
 export type PostsType = {
     posts: Array<PostType>
@@ -13,18 +13,28 @@ export type PostType = {
 }
 
 const MyPosts: React.FC<PostsType> = (props) => {
-  return (
-      <div>
-          <h3 className={s.title}>My Posts</h3>
-          <div className={s.wrapper}>
-              <textarea className={s.textarea} placeholder="your news..."/>
-              <button className={s.button}>Send</button>
-          </div>
-          <div className={s.postList}>
-              { props.posts.map((p: PostType) => <Post id={p.id} likeCount={p.like} message={p.message}/>) }
-          </div>
-      </div>
-  )
+    let postElements = props.posts.map((p: PostType) => <Post id={p.id} likeCount={p.like} message={p.message}/>);
+
+    let newPostElement: any = React.createRef();
+
+    let addPost = () => {
+        let text = newPostElement.current.value;
+
+    }
+
+    return (
+        <div>
+            <h3 className={s.title}>My Posts</h3>
+            <div className={s.wrapper}>
+                <textarea ref={newPostElement} className={s.textarea} placeholder="your news..."/>
+                <button onClick={addPost} className={s.button}>Send
+                </button>
+            </div>
+            <div className={s.postList}>
+                {postElements}
+            </div>
+        </div>
+    )
 }
 
 export default MyPosts

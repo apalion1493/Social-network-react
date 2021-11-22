@@ -36,6 +36,12 @@
     margin-bottom: 0;
 }
 
+.dialogForm {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
 .messages {
 
 }

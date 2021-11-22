@@ -5,6 +5,13 @@ import React from "react";
 import {DialogType, MessageType, TypeDataDialogsPage} from "../../redux/state";
 
 export const Dialogs = (props: TypeDataDialogsPage) => {
+    let newMessageElement: any = React.createRef();
+
+    let addMessage = () => {
+        let text = newMessageElement.current.value;
+        alert(text)
+    }
+
     return (
         <section className={s.dialogs}>
             <h1 className={s.dialogsTitle}>Dialogs</h1>
@@ -14,6 +21,11 @@ export const Dialogs = (props: TypeDataDialogsPage) => {
                 </div>
                 <div className={s.messages}>
                     { props.messages.map((m: MessageType) => <Message message={m.message} id={m.id}/>) }
+
+                    <div className={s.dialogForm}>
+                        <textarea ref={newMessageElement} placeholder="message" />
+                        <button onClick={addMessage}>Enter</button>
+                    </div>
                 </div>
             </div>
         </section>
