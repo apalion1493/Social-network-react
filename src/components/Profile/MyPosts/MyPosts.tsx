@@ -1,9 +1,10 @@
 import s from './MyPosts.module.css';
 import {Post} from "./Post/Post";
-import React, {LegacyRef} from "react";
+import React from "react";
 
 export type PostsType = {
     posts: Array<PostType>
+    addPost?: (postMessage: any) => void
 }
 
 export type PostType = {
@@ -19,7 +20,9 @@ const MyPosts: React.FC<PostsType> = (props) => {
 
     let addPost = () => {
         let text = newPostElement.current.value;
-
+        if (props.addPost) {
+            props.addPost(text)
+        }
     }
 
     return (

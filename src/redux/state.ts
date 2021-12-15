@@ -32,6 +32,7 @@ export type StateType = {
     profilePage: ProfileDataType
     messagePage: MessageDataType
     sidebar?: object
+    addPost?: (postMessage: string) => void
 }
 
 export const state: StateType = {
@@ -58,4 +59,12 @@ export const state: StateType = {
         ],
     },
     sidebar: {}
+}
+
+export const addPost = (postMessage: string) => {
+    let newPost = {
+        id: 5, message: postMessage, like: 0
+    }
+
+  state.profilePage.posts.push(newPost);
 }
