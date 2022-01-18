@@ -19,10 +19,13 @@ const MyPosts: React.FC<PostsType> = (props) => {
     let newPostElement: any = React.createRef();
 
     let addPost = () => {
-        let text = newPostElement.current.value;
-        if (props.addPost) {
-            props.addPost(text)
+        if (newPostElement.current.value.trim() !== '') {
+            let text = newPostElement.current.value;
+            if (props.addPost) {
+                props.addPost(text)
+            }
         }
+        newPostElement.current.value = '';
     }
 
     return (
@@ -30,8 +33,7 @@ const MyPosts: React.FC<PostsType> = (props) => {
             <h3 className={s.title}>My Posts</h3>
             <div className={s.wrapper}>
                 <textarea ref={newPostElement} className={s.textarea} placeholder="your news..."/>
-                <button onClick={addPost} className={s.button}>Send
-                </button>
+                <button onClick={addPost} className={s.button}>Send</button>
             </div>
             <div className={s.postList}>
                 {postElements}
