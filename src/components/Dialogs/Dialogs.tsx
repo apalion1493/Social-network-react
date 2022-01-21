@@ -9,7 +9,19 @@ export const Dialogs = (props: TypeDataDialogsPage) => {
 
     let addMessage = () => {
         let text = newMessageElement.current.value;
-        alert(text)
+        if (newMessageElement.current.value.trim() !== '') {
+            if(props.addDialogMessage) {
+                props.addDialogMessage(text)
+            }
+            newMessageElement.current.value = ''
+        }
+    }
+
+    let onMessageChange = () => {
+        let text = newMessageElement.current.value;
+        // if (props.newMessageText) {
+        //     props.newMessageText(text)
+        // }
     }
 
     return (
@@ -23,7 +35,7 @@ export const Dialogs = (props: TypeDataDialogsPage) => {
                     { props.messages.map((m: MessageType) => <Message message={m.message} id={m.id}/>) }
 
                     <div className={s.dialogForm}>
-                        <textarea ref={newMessageElement} placeholder="message" />
+                        <textarea onChange={onMessageChange} ref={newMessageElement} placeholder="message" />
                         <button onClick={addMessage}>Enter</button>
                     </div>
                 </div>

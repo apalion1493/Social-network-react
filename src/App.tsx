@@ -4,7 +4,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Header from "./components/Header/Header";
 import Profile from "./components/Profile/Profile";
 import {Dialogs} from "./components/Dialogs/Dialogs";
-import {BrowserRouter, Route} from "react-router-dom";
+import {Route} from "react-router-dom";
 import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
 import {Settings} from "./components/Settings/Settings";
@@ -17,12 +17,12 @@ const App = (props: StateType) => {
             <Navbar/>
             <div className='app-wrapper-content'>
                 <Route path="/dialogs" render={() =>
-                    <Dialogs messages={props.messagePage.messages}
+                    <Dialogs addDialogMessage={props.addDialogMessage} messages={props.messagePage.messages}
                              dialogs={props.messagePage.dialogs}/>}
                 />
                 <Route path="/profile" render={() =>
-                    <Profile addPost={props.addPost}
-                             posts={props.profilePage.posts}/>}
+                    <Profile addPost={props.addPost} updateNewPostText={props.updateNewPostText}
+                             posts={props.profilePage.posts} postText={props.profilePage.newPostText}/>}
                 />
                 <Route path="/news" render={() =>
                     <News/>}

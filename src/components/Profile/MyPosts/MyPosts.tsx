@@ -4,7 +4,9 @@ import React from "react";
 
 export type PostsType = {
     posts: Array<PostType>
-    addPost?: (postMessage: any) => void
+    addPost?: () => void
+    updateNewPostText?: (newText: string) => void
+    postText: string
 }
 
 export type PostType = {
@@ -20,19 +22,24 @@ const MyPosts: React.FC<PostsType> = (props) => {
 
     let addPost = () => {
         if (newPostElement.current.value.trim() !== '') {
-            let text = newPostElement.current.value;
             if (props.addPost) {
-                props.addPost(text)
+                props.addPost()
             }
         }
-        newPostElement.current.value = '';
+    }
+
+    let onPostChange = () => {
+        let text = newPostElement.current.value;
+        if (props.updateNewPostText) {
+            props.updateNewPostText(text)
+        }
     }
 
     return (
         <div>
             <h3 className={s.title}>My Posts</h3>
             <div className={s.wrapper}>
-                <textarea ref={newPostElement} className={s.textarea} placeholder="your news..."/>
+                <textarea ref={newPostElement} onChange={onPostChange} className={s.textarea} value={props.postText} placeholder="your news..."/>
                 <button onClick={addPost} className={s.button}>Send</button>
             </div>
             <div className={s.postList}>

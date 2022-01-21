@@ -7,7 +7,7 @@ const Profile: React.FC<PostsType> = (props: PostsType) => {
     return (
         <section className={s.content}>
             <ProfileInfo/>
-            <MyPosts addPost={props.addPost} posts={props.posts}/>
+            <MyPosts addPost={props.addPost} updateNewPostText={props.updateNewPostText} posts={props.posts} postText={props.postText}/>
         </section>
     )
 }

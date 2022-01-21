@@ -1,4 +1,4 @@
-import {rerenderEntireTree} from "../render";
+let rerenderEntireTree = (state?: StateType) => {}
 
 export type PostType = {
     id: number
@@ -19,22 +19,27 @@ export type DialogType = {
 export type TypeDataDialogsPage = {
     messages: Array<MessageType>
     dialogs: Array<DialogType>
+    addDialogMessage?: (messageText: string) => void
 }
 
 export type ProfileDataType = {
     posts: Array<PostType>
+    newPostText: string
 }
 
 export type MessageDataType = {
     messages: Array<MessageType>
     dialogs: Array<DialogType>
+    newMessageText: string
 }
 
 export type StateType = {
+    addDialogMessage?: (messageText: string) => void
     profilePage: ProfileDataType
     messagePage: MessageDataType
     sidebar?: object
-    addPost?: (postMessage: string) => void
+    addPost?: () => void
+    updateNewPostText?: (newText: string) => void
 }
 
 export const state: StateType = {
@@ -45,8 +50,10 @@ export const state: StateType = {
             {id: 3, like: 1, message: 'text 3'},
             {id: 4, like: 5, message: 'text 4'},
         ],
+        newPostText: 'IT',
     },
     messagePage: {
+        newMessageText: '',
         messages: [
             {id: 1, message: 'h1'},
             {id: 2, message: 'hello'},
@@ -63,11 +70,36 @@ export const state: StateType = {
     sidebar: {}
 }
 
-export const addPost = (postMessage: string) => {
+export const addPost = () => {
     let newPost = {
-        id: 5, message: postMessage, like: 0
+        id: 5, message: state.profilePage.newPostText, like: 0
     }
 
-  state.profilePage.posts.push(newPost);
-  rerenderEntireTree(state)
+    state.profilePage.posts.push(newPost);
+    state.profilePage.newPostText = '';
+    rerenderEntireTree(state)
+}
+
+export const updateNewPostText = (newText: string) => {
+    state.profilePage.newPostText = newText;
+    rerenderEntireTree(state)
+}
+
+export const addDialogMessage = () => {
+    let newMessage = {
+        id: 0, message: state.messagePage.newMessageText
+    }
+
+    state.messagePage.messages.push(newMessage);
+    state.messagePage.newMessageText = '';
+    rerenderEntireTree(state)
+}
+
+export const updateMessageText = (newText: string) => {
+    state.messagePage.newMessageText = newText;
+    rerenderEntireTree(state)
+}
+
+export const subscribe = (observer: any) => {
+    rerenderEntireTree = observer
 }
